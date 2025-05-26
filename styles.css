@@ -1,0 +1,1077 @@
+/*FUENTES DE GOOGLE*/
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Montserrat:wght@100..900&display=swap");
+
+:root {
+    --altura-encabezado: 3.5rem;
+
+    /*COLORES*/
+    --primer-color: hsl(353, 93%, 50%);
+    --primer-color-alt: hsl(353, 93%, 46%);
+    --primer-color-oscuro: hsl(353, 50%, 15%);
+    --color-titulo: hsl(353, 48%, 12%);
+    --color-texto: hsl(353, 16%, 32%);
+    --color-texto-claro: hsl(353, 16%, 48%);
+    --color-blanco: hsl(24, 86%, 90%);
+    --color-cuerpo: hsl(24, 86%, 88%);
+    --color-contenedor: hsl(24, 86%, 92%);
+    --sombra-img-pequena: drop-shadow(0 4px 16px hsla(353, 100%, 8%, .2));
+    --sombra-img-grande: drop-shadow(0 8px 24px hsla(353, 100%, 8%, .2));
+
+    /*FUENTE Y TIPOGRAFÍA*/
+    --fuente-cuerpo: "Montserrat", sans-serif;
+    --segunda-fuente: "Carter One", system-ui;
+    --tamano-fuente-mas-grande: 2.5rem;
+    --tamano-fuente-grande: 1.5rem;
+    --tamano-fuente-h1: 1.5rem;
+    --tamano-fuente-h2: 1.25rem;
+    --tamano-fuente-h3: 1rem;
+    --tamano-fuente-normal: .938rem;
+    --tamano-fuente-pequena: .813rem;
+    --tamano-fuente-mas-pequena: .75rem;
+
+    --peso-fuente-regular: 400;
+    --peso-fuente-medio: 500;
+    --peso-fuente-semi-negrita: 600;
+  
+    --z-tooltip: 10;
+    --z-fijo: 100;
+}
+
+/*TiIPOGRAFÍA RESPONSIVA*/
+@media screen and (min-width: 1150px) {
+    :root {
+        --tamano-fuente-mas-grande: 4.25rem;
+        --tamano-fuente-grande: 2.5rem;
+        --tamano-fuente-h1: 2.25rem;
+        --tamano-fuente-h2: 1.5rem;
+        --tamano-fuente-h3: 1.25rem;
+        --tamano-fuente-normal: 1rem;
+        --tamano-fuente-pequena: .875rem;
+        --tamano-fuente-mas-pequena: .813rem;
+    }
+}
+
+/*BASE*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+input,
+button,
+body {
+    font-family: var(--fuente-cuerpo);
+    font-size: var(--tamano-fuente-normal);
+}
+
+body {
+    background-color: var(--color-cuerpo);
+    color: var(--color-texto);
+}
+
+input,
+button {
+    outline: none;
+    border: none;
+}
+
+h1, h2, h3, h4 {
+    color: var(--color-titulo);
+    font-weight: var(--peso-fuente-regular);
+    font-family: var(--segunda-fuente);
+    line-height: 120%;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/*CLASES CSS REUTILIZABLES */
+.contenedor {
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+}
+
+.cuadricula {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.seccion {
+    padding-block: 5rem 1rem;
+}
+.seccion__titulo {
+    text-align: center;
+    font-size: var(--tamano-fuente-grande);
+    margin-bottom: 2rem;
+}
+
+.principal {
+    overflow: hidden;
+}
+
+/*ENCABEZADO Y NAVEGACIÓN*/
+.encabezado {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--color-cuerpo);
+    z-index: var(--z-fijo);
+    transition: box-shadow .4s;
+}
+
+.navegacion {
+    position: relative;
+    height: var(--altura-encabezado);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navegacion__logo {
+    display: inline-flex;
+    align-items: center;
+    column-gap: .25rem;
+    font-family: var(--segunda-fuente);
+    color: var(--color-titulo);
+}
+
+.navegacion__logo img {
+    width: 24px;
+}
+
+.navegacion__alternar, 
+.navegacion__cerrar {
+    display: flex;
+    font-size: 1.5rem;
+    color: var(--color-titulo);
+    cursor: pointer;
+}
+
+/* Navegación para dispositivos móviles */
+@media screen and (max-width: 1150px) {
+    .navegacion__menu {
+        position: fixed;
+        top: -120%;
+        left: 0;
+        background-color: var(--color-cuerpo);
+        width: 100%;
+        padding-block: 4.5rem 3.5rem;
+        box-shadow: 0 4px 16px hsla(353, 100%, 8%, .1);
+        transition: top .4s;
+    }
+}
+
+.navegacion__lista {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+.navegacion__enlace {
+    position: relative;
+    color: var(--color-titulo);
+    font-family: var(--segunda-fuente);
+}
+
+.navegacion__enlace::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: var(--primer-color);
+    position: absolute;
+    left: 0;
+    bottom: -.5rem;
+    transition: width .4s;
+}
+
+.navegacion__enlace:hover::after {
+    width: 60%;
+}
+
+.navegacion__cerrar {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+/* Mostrar menú */
+.mostrar-menu {
+    top: 0;
+}
+
+/* Añadir sombra al encabezado */
+.sombra-encabezado {
+    box-shadow: 0 4px 16px hsla(353, 100%, 8%, .1);
+}
+
+/* Enlace activo */
+.enlace-activo::after {
+    width: 60%;
+}
+
+/*INICIO*/
+.inicio__contenedor {
+    padding-block: 2rem 3rem;
+    row-gap: 7rem;
+}
+
+.inicio__datos {
+    position: relative;
+    text-align: center;
+}
+
+.inicio__titulo {
+    font-size: var(--tamano-fuente-mas-grande);
+}
+
+.inicio__descripcion {
+    margin-block: 1rem 2rem;
+}
+
+.inicio__calcomania-1, 
+.inicio__calcomania-2 {
+    width: 40px;
+    position: absolute;
+    opacity: .7;
+}
+
+.inicio__calcomania-1 {
+    right: .75rem;
+    bottom: 2rem;
+    rotate: 30deg;
+}
+
+.inicio__calcomania-2 {
+    left: 2.5rem;
+    bottom: -4.5rem;
+}
+
+.inicio__imagenes {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    justify-self: center;
+}
+
+.inicio__ingrediente {
+    width: 60px;
+    filter: var(--sombra-img-pequena);
+    position: absolute;
+    z-index: 2;
+}
+
+.inicio__tabla, 
+.inicio__pizza {
+    filter: var(--sombra-img-grande);
+}
+
+.inicio__pizza {
+    width: 300px;
+    z-index: 2;
+}
+
+.inicio__tabla {
+    width: 300px;
+    position: absolute;
+    bottom: -.5rem;
+    left: -.15rem;
+}
+
+.inicio__hoja-1 {
+    top: -1rem;
+}
+
+.inicio__pepperoni {
+    right: -.5rem;
+    top: 2rem;
+}
+
+.inicio__champiñon {
+    right: -.5rem;
+    bottom: 2rem;
+}
+
+.inicio__aceituna {
+    bottom: -1rem;
+}
+
+.inicio__hoja-2 {
+    left: -.5rem;
+    bottom: 2rem;
+}
+
+.inicio__tomate {
+    left: -.5rem;
+    top: 2rem;
+}
+
+/*BOTÓN */
+.boton {
+    display: inline-flex;
+    justify-content: center;
+    background-color: var(--primer-color);
+    color: var(--color-blanco);
+    padding: 1rem 1.5rem;
+    font-weight: var(--peso-fuente-semi-negrita);
+    border-radius: 4rem;
+    box-shadow: 0 8px 24px hsla(353, 100%, 40%, .4);
+    transition: background-color .4s;
+}
+
+.boton:hover {
+    background-color: var(--primer-color-alt);
+}
+
+/*NOSOTROS*/
+.nosotros {
+    background-color: var(--color-contenedor);
+}
+
+.nosotros__contenedor {
+    row-gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+.nosotros__datos {
+    position: relative;
+    text-align: center;
+}
+
+.nosotros__datos .seccion__titulo {
+    margin-bottom: 1rem;
+}
+
+.nosotros__descripcion {
+    margin-bottom: 2rem;
+}
+
+.nosotros__calcomania {
+    width: 40px;
+    position: absolute;
+    right: 0;
+    bottom: 2rem;
+}
+
+.nosotros__img {
+    width: 320px;
+    justify-self: center;
+    filter: var(--sombra-img-grande);
+}
+
+/*POPULAR*/
+.popular__contenedor {
+    grid-template-columns: 100%;
+    row-gap: 3rem;
+    padding-bottom: 2rem;
+}
+
+.popular__datos .seccion__titulo {
+    margin-bottom: 1rem;
+}
+
+.popular__descripcion {
+    text-align: center;
+}
+
+.popular__swiper {
+    position: relative;
+}
+
+.popular__plato {
+    width: 220px;
+    filter: var(--sombra-img-grande);
+    position: absolute;
+    inset: 0;
+    top: -.85rem;
+    margin-inline: auto;
+}
+
+.popular__tarjeta, 
+.popular__img {
+    width: 200px;
+}
+
+.popular__img {
+    transform: scale(.8) rotate(-90deg);
+    transition: transform .4s;
+}
+
+.popular__titulo {
+    font-size: var(--tamano-fuente-h3);
+    color: var(--primer-color);
+    margin-top: 2rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .4s;
+}
+
+/* Clase Swiper */
+.swiper {
+    margin-inline: initial;
+    overflow: visible;
+}
+
+:is(.swiper-slide-active, .swiper-slide-duplicate-active) .popular__img {
+    transform: scale(1) rotate(0);
+}
+
+:is(.swiper-slide-active, .swiper-slide-duplicate-active) .popular__titulo {
+    opacity: 1;
+}
+
+/*RECETA */
+.receta {
+    background-color: var(--color-contenedor);
+}
+
+.receta__contenedor {
+    row-gap: 2rem;
+    padding-bottom: 2rem;
+}
+
+.receta__imagen {
+    width: 60px;
+    filter: var(--sombra-img-pequena);
+}
+
+.receta__nombre {
+    font-size: var(--tamano-fuente-normal);
+    margin-bottom: .25rem;
+}
+
+.receta__descripcion {
+    font-size: var(--tamano-fuente-pequena);
+}
+
+.receta__ingrediente {
+    display: flex;
+    align-items: center;
+    column-gap: .75rem;
+}
+
+.receta__img {
+    width: 320px;
+    justify-self: center;
+    filter: var(--sombra-img-grande);
+}
+
+/*PRODUCTOS*/
+.productos__contenedor {
+    padding-top: 3.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem 1.5rem;
+}
+
+.productos__tarjeta {
+    position: relative;
+    background-color: var(--color-contenedor);
+    padding: 5rem .75rem 1.25rem .75rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 24px hsla(353, 100%, 8%, .1);
+}
+
+.productos__img {
+    width: 120px;
+    position: absolute;
+    top: -3.5rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    filter: var(--sombra-img-pequena);
+    transition: transform .4s;
+}
+
+.productos__nombre {
+    font-size: var(--tamano-fuente-h3);
+    margin-bottom: .5rem;
+}
+
+.productos__precio {
+    font-family: var(--segunda-fuente);
+    font-size: var(--tamano-fuente-h1);
+    line-height: 120%;
+    color: var(--primer-color);
+}
+
+.productos__boton {
+    position: absolute;
+    right: .75rem;
+    bottom: 1.25rem;
+    background-color: var(--primer-color);
+    color: var(--color-blanco);
+    padding: 4px;
+    border-radius: .5rem;
+    font-size: 1.5rem;
+    display: inline-flex;
+    box-shadow: 0 4px 16px hsla(353, 100%, 40%, .4);
+    cursor: pointer;
+    transition: background-color .4s;
+}
+
+.productos__boton:hover {
+    background-color: var(--primer-color-alt);
+}
+
+.productos__tarjeta:hover .productos__img {
+    transform: translateY(-.5rem);
+}
+
+/*CONTACTO*/
+.contacto__contenedor {
+    position: relative;
+    background-color: var(--primer-color-oscuro);
+    padding-top: 3.5rem;
+    border-radius: 3rem;
+    overflow: hidden;
+    row-gap: 3rem;
+}
+
+.contacto__contenedor .seccion__titulo, 
+.contacto__titulo, 
+.contacto__direccion {
+    color: var(--color-blanco);
+}
+
+.contacto__info {
+    text-align: center;
+    row-gap: 2rem;
+}
+
+.contacto__titulo {
+    margin-bottom: 1rem;
+}
+
+.contacto__social {
+    display: flex;
+    justify-content: center;
+    column-gap: 1rem;
+}
+
+.contacto__enlace-social {
+    font-size: 1.5rem;
+    color: var(--primer-color);
+    transition: transform .4s;
+}
+
+.contacto__enlace-social:hover {
+    transform: translateY(-.25rem);
+}
+
+.contacto__direccion {
+    font-style: normal;
+}
+
+.contacto__mapa {
+    color: var(--primer-color);
+    display: inline-flex;
+    align-items: center;
+    column-gap: .5rem;
+    margin-top: .5rem;
+    font-size: 1rem;
+}
+
+.contacto__mapa span {
+    font-size: var(--tamano-fuente-pequena);
+    font-weight: var(--peso-fuente-semi-negrita);
+}
+
+.contacto__imagen {
+    justify-self: center;
+}
+
+.contacto__img {
+    width: 300px;
+}
+
+.contacto__calcomania-1, 
+.contacto__calcomania-2, 
+.contacto__calcomania-3 {
+    width: 40px;
+    position: absolute;
+    opacity: .7;
+}
+
+.contacto__calcomania-1 {
+    top: 8rem;
+    left: 1.5rem;
+}
+
+.contacto__calcomania-2 {
+    right: 1.5rem;
+    bottom: 23rem;
+}
+
+.contacto__calcomania-3 {
+    left: 2rem;
+    bottom: 6rem;
+}
+
+/*PIE DE PÁGINA*/
+.pie-pagina {
+    padding-block: 4rem 2rem;
+}
+
+.pie-pagina__contenedor, 
+.pie-pagina__contenido {
+    row-gap: 3rem;
+}
+
+.pie-pagina__logo {
+    justify-self: center;
+    font-size: var(--tamano-fuente-h1);
+    font-family: var(--segunda-fuente);
+    color: var(--primer-color);
+}
+
+.pie-pagina__titulo {
+    font-size: var(--tamano-fuente-h3);
+    margin-bottom: 1rem;
+}
+
+.pie-pagina__social, 
+.pie-pagina__pago, 
+.pie-pagina__formulario {
+    display: flex;
+    column-gap: 1rem;
+}
+
+.pie-pagina__enlace-social {
+    font-size: 1.5rem;
+    color: var(--primer-color);
+    transition: transform .4s;
+}
+
+.pie-pagina__enlace-social:hover {
+    transform: translateY(-.25rem);
+}
+
+.pie-pagina__tarjeta-pago {
+    width: 30px;
+    filter: var(--sombra-img-pequena);
+}
+
+.pie-pagina__formulario {
+    padding: .5rem;
+    background-color: var(--color-contenedor);
+    box-shadow: 0 4px 16px hsla(353, 100%, 8%, .1);
+    border-radius: 4rem;
+}
+
+.pie-pagina__entrada {
+    width: 100%;
+    background: transparent;
+    padding-left: .75rem;
+    color: var(--color-titulo);
+    font-weight: var(--peso-fuente-semi-negrita);
+}
+
+.pie-pagina__entrada::placeholder {
+    color: var(--color-texto);
+}
+
+.pie-pagina__boton {
+    padding-block: .75rem;
+    cursor: pointer;
+}
+
+.pie-pagina__politica {
+    display: flex;
+    column-gap: 2rem;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.pie-pagina__enlace {
+    font-size: var(--tamano-fuente-pequena);
+    color: var(--color-texto);
+}
+
+.pie-pagina__copyright {
+    display: block;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: var(--tamano-fuente-pequena);
+}
+
+/*BARRA DE DESPLAZAMIENTO*/
+::-webkit-scrollbar {
+    width: .6rem;
+    background-color: hsl(24, 32%, 75%);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: hsl(24, 32%, 65%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(24, 32%, 55%);
+}
+
+/*DESPLAZAR HACIA ARRIBA*/
+.desplazarse-arriba {
+    position: fixed;
+    right: 1rem;
+    bottom: -50%;
+    background-color: var(--color-cuerpo);
+    box-shadow: 0 4px 16px hsla(353, 100%, 8%, .2);
+    color: var(--color-titulo);
+    display: inline-flex;
+    padding: 6px;
+    font-size: 1.25rem;
+    border-radius: .5rem;
+    z-index: var(--z-tooltip);
+    transition: bottom .4s, transform .4s;
+}
+
+.desplazarse-arriba:hover {
+    transform: translateY(-.5rem);
+}
+
+/*Mostrar Desplazar hacia Arriba*/
+.mostrar-desplazamiento {
+    bottom: 3rem;
+}
+
+/*PUNTOS DE RUPTURA O RESPONSIVA*/
+/* Para dispositivos pequeños */
+@media screen and (max-width: 320px) {
+    .contenedor {
+        margin-inline: 1rem;
+    }
+
+    .productos__contenedor {
+        grid-template-columns: 150px;
+        justify-content: center;
+    }
+
+    .pie-pagina__formulario {
+        background-color: transparent;
+        box-shadow: none;
+        flex-direction: column;
+        row-gap: 1rem;
+        padding: 0;
+    }
+
+    .pie-pagina__entrada {
+        background-color: var(--color-contenedor);
+        box-shadow: 0 4px 16px hsla(353, 100%, 8%, .1);
+        padding: .75rem 1rem;
+        border-radius: 4rem;
+    }
+}
+
+/* Para dispositivos medianos */
+@media screen and (min-width: 576px) {
+    .inicio__contenedor,
+    .nosotros__contenedor,
+    .popular__contenedor,
+    .receta__contenedor {
+        grid-template-columns: 380px;
+        justify-content: center;
+    }
+
+    .productos__contenedor {
+        grid-template-columns: repeat(2, 160px);
+        justify-content: center;
+    }
+
+    .contacto__contenedor {
+        width: 450px;
+        margin-inline: auto;
+    }
+
+    .pie-pagina__formulario {
+        width: 360px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .popular__swiper {
+        width: 600px;
+        overflow-x: clip;
+        justify-self: center;
+    }
+
+    .productos__contenedor {
+        grid-template-columns: repeat(3, 160px);
+    }
+
+    .pie-pagina__contenido {
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+    }
+    .pie-pagina__contenido div:nth-child(3) {
+        grid-column: 1/3;
+    }
+    .pie-pagina__titulo {
+        text-align: center;
+    }
+    .pie-pagina__social, 
+    .pie-pagina__pago {
+        column-gap: 1.5rem;
+    }
+}
+
+/* Para dispositivos grandes */
+@media screen and (min-width: 1150px) {
+    .contenedor {
+        margin-inline: auto;
+    }
+
+    .seccion {
+        padding-block: 7rem 2rem;
+    }
+    .seccion__titulo {
+        margin-bottom: 4rem;
+    }
+
+    .navegacion {
+        height: calc(var(--altura-encabezado) + 2rem);
+    }
+    .navegacion__alternar, 
+    .navegacion__cerrar {
+        display: none;
+    }
+    .navegacion__lista {
+        flex-direction: row;
+        column-gap: 4rem;
+    }
+
+    .inicio__contenedor {
+        grid-template-columns: 515px 555px;
+        column-gap: 3rem;
+        align-items: start;
+        padding-block: 10rem 4rem;
+    }
+    .inicio__datos {
+        text-align: initial;
+        margin-top: 2rem;
+    }
+    .inicio__descripcion {
+        margin-bottom: 3.5rem;
+        padding-right: 6rem;
+    }
+    .inicio__calcomania-1, 
+    .inicio__calcomania-2 {
+        width: 50px;
+    }
+    .inicio__calcomania-1 {
+        right: 3rem;
+        top: 1rem;
+        bottom: 0;
+    }
+    .inicio__calcomania-2 {
+        left: 16rem;
+        bottom: 3rem;
+    }
+    .inicio__tabla, 
+    .inicio__pizza {
+        width: 520px;
+    }
+    .inicio__tabla {
+        bottom: -1rem;
+    }
+    .inicio__ingrediente {
+        width: 100px;
+    }
+    .inicio__hoja-1 {
+        top: -2rem;
+    }
+    .inicio__pepperoni {
+        right: -1rem;
+        top: 3.5rem;
+    }
+    .inicio__champiñon {
+        right: -1rem;
+        bottom: 3.5rem;
+    }
+    .inicio__aceituna {
+        bottom: -2rem;
+    }
+    .inicio__hoja-2 {
+        left: -1rem;
+        bottom: 3.5rem;
+    }
+    .inicio__tomate {
+        left: -1rem;
+        top: 3.5rem;
+    }
+
+    .nosotros__contenedor {
+        grid-template-columns: 450px 440px;
+        align-items: center;
+        column-gap: 6rem;
+    }
+    .nosotros__img {
+        order: -1;
+        width: 450px;
+    }
+    .nosotros__datos {
+        text-align: initial;
+    }
+    .nosotros__datos .seccion__titulo {
+        margin-bottom: 1.5rem;
+        text-align: initial;
+    }
+    .nosotros__descripcion {
+        margin-bottom: 3.5rem;
+    }
+    .nosotros__calcomania {
+        width: 50px;
+        right: 6rem;
+        bottom: 4rem;
+    }
+
+    .popular__contenedor {
+        grid-template-columns: 470px;
+        row-gap: 5rem;
+        padding-bottom: 3rem;
+    }
+    .popular__datos .seccion__titulo {
+        margin-bottom: 1.5rem;
+    }
+    .popular__swiper {
+        width: 1000px;
+    }
+    .popular__tarjeta, 
+    .popular__img {
+        width: 350px;
+    }
+    .popular__plato {
+        width: 390px;
+        top: -1.5rem;
+    }
+    .popular__titulo {
+        margin-top: 3rem;
+        font-size: var(--tamano-fuente-h2);
+    }
+
+    .receta__contenedor {
+        grid-template-columns: 360px 550px;
+        align-items: center;
+        column-gap: 6rem;
+        padding-bottom: 3rem;
+    }
+    .receta__ingrediente {
+        column-gap: 1.5rem;
+    }
+    .receta__imagen {
+        width: 80px;
+    }
+    .receta__nombre {
+        font-size: var(--tamano-fuente-h3);
+    }
+    .receta__descripcion {
+        font-size: var(--tamano-fuente-normal);
+    }
+    .receta__img {
+        width: 550px;
+    }
+
+    .productos__contenedor {
+        grid-template-columns: repeat(3, 250px);
+        gap: 7.5rem 4rem;
+    }
+    .productos__tarjeta {
+        padding: 10rem 1.5rem 1.5rem;
+        border-radius: 2rem;
+    }
+    .productos__img {
+        width: 200px;
+        top: -4rem;
+    }
+    .productos__nombre {
+        font-size: var(--tamano-fuente-h2);
+    }
+    .productos__boton {
+        right: 1.5rem;
+        bottom: 1.5rem;
+        padding: 6px;
+    }
+
+    .contacto__contenedor {
+        width: initial;
+        grid-template-columns: 370px 350px;
+        justify-content: center;
+        column-gap: 6rem;
+        border-radius: 4rem;
+    }
+    .contacto__img {
+        width: 350px;
+    }
+    .contacto__imagen {
+        order: -1;
+    }
+    .contacto__info, 
+    .contacto__datos .seccion__titulo {
+        text-align: initial;
+    }
+    .contacto__datos{
+        margin-top: 2rem;
+    }
+    .contacto__info {
+        grid-template-columns: repeat(2, max-content);
+    }
+    .contacto__titulo {
+        font-size: var(--tamano-fuente-h2);
+    }
+    .contacto__social {
+        justify-content: initial;
+    }
+    .contacto__calcomania-1, 
+    .contacto__calcomania-2, 
+    .contacto__calcomania-3 {
+        width: 50px;
+    }
+    .contacto__calcomania-1 {
+        left: 4rem;
+    }
+    .contacto__calcomania-2 {
+        right: 4rem;
+        top: 8rem;
+        bottom: 0;
+    }
+    .contacto__calcomania-3 {
+        left: 10rem;
+        bottom: 4rem;
+    }
+
+    .pie-pagina {
+        padding-bottom: 3rem;
+    }
+    .pie-pagina__contenido {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .pie-pagina__contenido div:nth-child(3) {
+        grid-column: initial;
+    }
+    .pie-pagina__contenido div:nth-child(2) {
+        order: 1;
+        justify-self: end;
+    }
+    .pie-pagina__contenido div:nth-child(1) {
+        justify-self: start;
+    }
+
+    .desplazarse-arriba {
+        right: 3rem;
+    }
+}
